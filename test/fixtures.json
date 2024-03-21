@@ -1,0 +1,58 @@
+{
+    "findings": {
+        "high_confidence": [
+            {
+                "line": 0,
+                "type": "SQL injection",
+                "file": "config/prod.exs"
+            }
+        ],
+        "low_confidence": [
+            {
+                "line": 25,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/locations.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 37,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/location.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 33,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/devices.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 54,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/device.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 28,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/benches.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 78,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/topology/projectors/bench.ex",
+                "variable": "uuid"
+            },
+            {
+                "line": 29,
+                "type": "SQL.Stream",
+                "file": "lib/banshee/booking/projectors/booking.ex",
+                "variable": "uuid"
+            }
+        ],
+        "medium_confidence": []
+    },
+    "sobelow_version": "0.13.0",
+    "total_findings": 8
+}

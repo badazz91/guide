@@ -1,0 +1,51 @@
+name: Elixir CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  MIX_ENV: test
+
+jobs:
+  mix_test:
+    name: mix test (Elixir ${{matrix.elixir}} | OTP ${{matrix.otp}})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - elixir: '1.15.4'
+            otp: '26.0.2'
+    steps:
+      - name: Setup Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{ matrix.otp }}
+          elixir-version: ${{ matrix.elixir }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          mix local.hex --force
+          mix local.rebar --force
+          mix deps.get --only test
+
+      - name: Hex Audit
+        run: mix hex.audit
+
+      - name: Check Formatting
+        run: mix format --check-formatted
+
+      - name: Compiles w/o Warnings
+        run: mix compile --warnings-as-errors
+
+      - name: Credo
+        run: mix credo --all --strict
+
+      - name: Run Tests
+        run: mix test
