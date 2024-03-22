@@ -1,4 +1,5 @@
 defmodule Guide.MixProject do
+  @moduledoc false
   use Mix.Project
 
   @source_url "https://github.com/badazz91/guide"

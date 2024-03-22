@@ -1,5 +1,8 @@
 # Guide
 
+[![Module Version](https://img.shields.io/hexpm/v/guide.svg)](https://hex.pm/packages/guide)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/guide/)
+[![License](https://img.shields.io/hexpm/l/guide.svg)](https://hex.pm/packages/guide)
 [![Coverage Status](https://coveralls.io/repos/github/badazz91/guide/badge.svg?branch=main)](https://coveralls.io/github/badazz91/guide?branch=main)
 
 Guide is a tool that turns sobelow static code analysis results into
