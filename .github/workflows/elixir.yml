@@ -17,8 +17,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - elixir: '1.15.4'
-            otp: '26.0.2'
+          - elixir: '1.14.x'
+            otp: 25.1
+          - elixir: '1.15.x'
+            otp: 26.0
+          - elixir: '1.16.x'
+            otp: 26.2
     steps:
       - name: Setup Elixir
         uses: erlef/setup-beam@v1
@@ -39,9 +43,11 @@ jobs:
         run: mix hex.audit
 
       - name: Check Formatting
+        if: ${{ matrix.elixir == '1.16.x' }} # we only care about formatting for latest version of Elixir
         run: mix format --check-formatted
 
       - name: Compiles w/o Warnings
+        if: ${{ matrix.elixir == '1.16.x' }} # we only care about formatting for latest version of Elixir
         run: mix compile --warnings-as-errors
 
       - name: Credo
