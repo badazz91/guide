@@ -17,7 +17,7 @@ TEST
 Test:
 
 ```
-code code code
+ code code code for SQL injection
 ```
 
 Test test test
@@ -41,7 +41,7 @@ Test
 Test:
 
 ```
- code code code
+ code code code for SQL.Stream
 ```
 
 Test

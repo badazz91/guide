@@ -28,7 +28,7 @@ defmodule Guide.StubCase do
       defp reset_stage do
         File.rm("comment.md")
 
-        File.cp(
+        File.cp!(
           Path.join(File.cwd!(), "test/fixtures.json"),
           Path.join(File.cwd!(), "sobelow.results.json")
         )

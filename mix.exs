@@ -19,7 +19,11 @@ defmodule Guide.MixProject do
       homepage_url: "https://hexdocs.pm/guide",
       docs: docs(),
       aliases: aliases(),
-      escript: [main_module: Mix.Tasks.Guide]
+      escript: [main_module: Mix.Tasks.Guide],
+      test_coverage: [tool: ExCoveralls, export: "cov"],
+      preferred_cli_env: [
+        coveralls: :test
+      ]
     ]
   end
 
@@ -47,6 +51,7 @@ defmodule Guide.MixProject do
       {:httpoison, "~> 2.1"},
       {:earmark, "~> 1.4"},
       {:jason, "~> 1.4"},
+      {:excoveralls, "~> 0.18", only: :test},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:mox, "~> 1.1", only: :test}
