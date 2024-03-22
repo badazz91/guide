@@ -16,7 +16,7 @@ defmodule Guide.MixProject do
       package: package(),
       description: "Tool that turns sobelow static code analysis results into markdown",
       name: "Guide",
-      homepage_url: "https://github.com/badazz91/guide",
+      homepage_url: "https://hexdocs.pm/guide",
       docs: docs(),
       aliases: aliases(),
       escript: [main_module: Mix.Tasks.Guide]
