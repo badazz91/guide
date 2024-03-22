@@ -1,5 +1,7 @@
 # Guide
 
+[![Coverage Status](https://coveralls.io/repos/github/badazz91/guide/badge.svg?branch=main)](https://coveralls.io/github/badazz91/guide?branch=main)
+
 Guide is a tool that turns sobelow static code analysis results into
 markdown, that can be used to decorate pull requests of GitHub.
 
