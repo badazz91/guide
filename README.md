@@ -14,11 +14,11 @@ This tool should be run with the following command:
 mix guide --source <url to markdown file> --repo <name of repo in GitHub> --commit <commit hash of the latest commit>
 ```
 
-To decorate a PR you have to run these steps inside of a GitHub Action:
+To decorate a PR you have to run these steps inside of your CI/CD pipeline (e.g. GitHub Actions):
 
-1. mix sobelow --skip --format=json --out=./sobelow.results.json
-2. mix guide --source <url to markdown file> --repo <name of repo in GitHub> --commit <commit hash of the latest commit>
-3. gh pr comment <PR Number> --repo <name of repo in GitHub> -F comment.md
+1. `mix sobelow --skip --format=json --out=./sobelow.results.json`
+2. `mix guide --source <url to markdown file> --repo <name of repo in GitHub> --commit <commit hash of the latest commit>`
+3. `gh pr comment <PR Number> --repo <name of repo in GitHub> -F comment.md`
 
 ## Command line options
 
