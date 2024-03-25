@@ -1,4 +1,5 @@
 defmodule GuideTest do
+  @moduledoc false
   use ExUnit.Case
   use Guide.StubCase
 
