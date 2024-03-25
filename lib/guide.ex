@@ -78,9 +78,10 @@ defmodule Guide do
         EEx.eval_string(Templates.empty())
 
       _ ->
-        guides
-        |> Enum.map_join("\n\n", &make_section(&1, opts, findings))
-        |> String.trim()
+        EEx.eval_string(Templates.findings(),
+          sections:
+            guides |> Enum.map_join("\n\n", &make_section(&1, opts, findings)) |> String.trim()
+        )
     end
   end
 
