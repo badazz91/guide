@@ -3,6 +3,8 @@ defmodule Guide.Templates do
   Provide markdown templates for rendering.
   """
 
+  @title "static analysis for security vulnerabilities"
+
   @doc """
   Template for one section (one vulnerability).
   """
@@ -15,13 +17,24 @@ defmodule Guide.Templates do
   end
 
   @doc """
-  Template for when no vulnerabilities where found.
+  Template for when no vulnerabilities were found.
   """
   def empty do
     """
-    ## :green_circle: static analysis for security vulnerabilities
+    ## :green_circle: #{@title}
 
     No volunerabilities detected :white_check_mark:
+    """
+  end
+
+  @doc """
+  Template for when vulnerabilities were found.
+  """
+  def findings do
+    """
+    ## :red_circle: #{@title}
+
+    <%= sections %>
     """
   end
 end

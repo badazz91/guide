@@ -19,6 +19,8 @@ defmodule GuideTest do
       assert File.exists?("comment.md")
 
       assert String.contains?(File.read!("comment.md"), [
+               "## :red_circle:",
+               "static analysis for security vulnerabilities",
                "code code code for SQL.Stream",
                "code code code for SQL injection"
              ])
@@ -44,6 +46,7 @@ defmodule GuideTest do
              ]) == false
 
       assert String.contains?(File.read!("comment.md"), [
+               "## :green_circle:",
                "static analysis for security vulnerabilities",
                "No volunerabilities detected"
              ])
