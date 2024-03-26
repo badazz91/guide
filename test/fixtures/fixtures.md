@@ -49,3 +49,23 @@ Test
 ### How to fix a true positive
 
 Test
+
+## UID 28, Header with special `characters.non-exact-match`
+
+### Severity
+
+Test
+
+### How to verify this finding
+
+Test:
+
+```
+ code code code for Header with special
+```
+
+Test
+
+### How to fix a true positive
+
+Test

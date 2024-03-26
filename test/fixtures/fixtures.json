@@ -11,43 +11,43 @@
             {
                 "line": 25,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/locations.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 37,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/location.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 33,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/devices.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 54,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/device.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 28,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/benches.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 78,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/topology/projectors/bench.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             },
             {
                 "line": 29,
                 "type": "SQL.Stream",
-                "file": "lib/banshee/booking/projectors/booking.ex",
+                "file": "lib/path/file.ex",
                 "variable": "uuid"
             }
         ],

@@ -122,7 +122,7 @@ defmodule Mix.Tasks.GuideTest do
                         "--commit",
                         "hash",
                         "--results",
-                        "test/fixtures.json"
+                        "test/fixtures/fixtures.json"
                       ]) == 0
              end) == output("comment.md")
     end

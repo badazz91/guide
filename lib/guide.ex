@@ -39,12 +39,22 @@ defmodule Guide do
   end
 
   defp extract(markdown, %{"type" => type}) do
-    guide =
+    collection =
       markdown
       |> Earmark.Restructure.split_by_regex(@pattern, fn [_, inner | _] -> inner end)
       |> Enum.reject(fn blob -> blob == "" end)
       |> Kernel.tl()
+
+    guide =
+      collection
       |> Enum.find(fn blob -> String.contains?(blob, type) end)
+      |> case do
+        nil ->
+          collection |> Enum.find(&String.contains?(&1, normalize_type(type)))
+
+        md ->
+          md
+      end
 
     {type, EEx.eval_string(Templates.section(), snippet: guide)}
   end
@@ -95,4 +105,6 @@ defmodule Guide do
     |> Kernel.<>("\n\n### Findings: \n")
     |> Kernel.<>(snippets)
   end
+
+  defp normalize_type(type), do: String.split(type, "`") |> Kernel.hd()
 end
