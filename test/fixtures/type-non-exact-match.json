@@ -1,0 +1,16 @@
+{
+    "findings": {
+        "high_confidence": [],
+        "low_confidence": [
+            {
+                "line": 18,
+                "type": "Header with special `characters`",
+                "file": "lib/path/file.ex",
+                "variable": "path"
+            }
+        ],
+        "medium_confidence": []
+    },
+    "sobelow_version": "0.13.0",
+    "total_findings": 1
+}

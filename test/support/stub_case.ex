@@ -9,7 +9,7 @@ defmodule Guide.StubCase do
 
       defp setup_stub(client) do
         response = %HTTPoison.Response{
-          body: File.read!(Path.join(File.cwd!(), "test/fixtures.md")),
+          body: File.read!(Path.join(File.cwd!(), "test/fixtures/fixtures.md")),
           status_code: 200
         }
 
@@ -29,7 +29,7 @@ defmodule Guide.StubCase do
         File.rm("comment.md")
 
         File.cp!(
-          Path.join(File.cwd!(), "test/fixtures.json"),
+          Path.join(File.cwd!(), "test/fixtures/fixtures.json"),
           Path.join(File.cwd!(), "sobelow.results.json")
         )
       end
