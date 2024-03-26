@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.0.3
+
 - Enhancements
   - Extract recommendations out of source file, even if it does not match the type of the findings exactly
 
