@@ -30,13 +30,12 @@ To decorate a PR you have to run these steps inside of your CI/CD pipeline (e.g.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `guide` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `guide` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:guide, "~> 0.0.1"}
+    {:guide, "~> 0.0.3", only: [:dev, :test], runtime: false}
   ]
 end
 ```
