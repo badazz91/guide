@@ -6,7 +6,8 @@ defmodule Guide do
   2. Extracting the needed parts out of (1), that match the sobelow findings,
   3. Prepare markdown that can be used to decorate PRs in GitHub.
   """
-  @pattern ~r/## UID (.*?)/
+
+  @pattern ~r/\A## UID\s+/
 
   alias Guide.Api
   alias Guide.Templates
@@ -41,22 +42,77 @@ defmodule Guide do
   defp extract(markdown, %{"type" => type}) do
     collection =
       markdown
-      |> Earmark.Restructure.split_by_regex(@pattern, fn [_, inner | _] -> inner end)
-      |> Enum.reject(fn blob -> blob == "" end)
-      |> Kernel.tl()
+      |> markdown_sections()
+      |> Enum.reject(&(&1 == ""))
 
     guide =
-      collection
-      |> Enum.find(fn blob -> String.contains?(blob, type) end)
-      |> case do
-        nil ->
-          collection |> Enum.find(&String.contains?(&1, normalize_type(type)))
-
-        md ->
-          md
-      end
+      Enum.find(collection, &String.contains?(&1, type)) ||
+        Enum.find(collection, &String.contains?(&1, normalize_type(type)))
 
     {type, EEx.eval_string(Templates.section(), snippet: guide)}
+  end
+
+  defp markdown_sections(markdown) do
+    document = MDEx.parse_document!(markdown)
+
+    document
+    |> Map.fetch!(:nodes)
+    |> split_by_uid_heading()
+    |> Enum.map(&section_to_markdown(document, &1))
+    |> Enum.map(&extract_inner/1)
+  end
+
+  defp split_by_uid_heading(nodes) do
+    {sections, current, _inside_uid_section?} =
+      Enum.reduce(nodes, {[], [], false}, fn node, {sections, current, inside_uid_section?} ->
+        cond do
+          uid_heading?(node) and current == [] ->
+            {sections, [node], true}
+
+          uid_heading?(node) ->
+            {[Enum.reverse(current) | sections], [node], true}
+
+          inside_uid_section? ->
+            {sections, [node | current], true}
+
+          true ->
+            {sections, current, false}
+        end
+      end)
+
+    sections =
+      case current do
+        [] -> sections
+        _ -> [Enum.reverse(current) | sections]
+      end
+
+    Enum.reverse(sections)
+  end
+
+  defp uid_heading?(%MDEx.Heading{level: 2, nodes: nodes}) do
+    nodes
+    |> inline_text()
+    |> String.starts_with?("UID ")
+  end
+
+  defp uid_heading?(_), do: false
+
+  defp inline_text(nodes) when is_list(nodes) do
+    Enum.map_join(nodes, "", &inline_text/1)
+  end
+
+  defp inline_text(%{literal: literal}) when is_binary(literal), do: literal
+  defp inline_text(%{nodes: nodes}) when is_list(nodes), do: inline_text(nodes)
+  defp inline_text(_), do: ""
+
+  defp section_to_markdown(%MDEx.Document{} = document, nodes) do
+    document
+    |> Map.put(:nodes, nodes)
+    |> MDEx.to_markdown!()
+  end
+
+  defp extract_inner(blob) do
+    Regex.replace(@pattern, blob, "", global: false)
   end
 
   defp code_snippet(opts, %{"file" => file, "line" => 0}) do

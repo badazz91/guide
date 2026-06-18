@@ -1,5 +1,8 @@
 # Changelog
 
+- Removed deprecated `earmark` in favor of `mdex`
+- Supports elixir versions 1.19.x
+
 ## v0.0.3
 
 - Enhancements
