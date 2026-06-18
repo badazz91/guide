@@ -27,6 +27,9 @@ jobs:
       - name: Run tests
         run: mix test
 
+      - name: Build package
+        run: mix hex.build
+
       - name: Publish package
         run: mix hex.publish --yes
         env:
